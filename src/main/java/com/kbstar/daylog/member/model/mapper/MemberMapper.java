@@ -11,7 +11,10 @@ public interface MemberMapper {
     // 회원 전체 조회
     public List<MemberInfoRes> getAllMembers() throws Exception;
 
-    // 회원 조회
+    // 로그인
+    public MemberInfoRes getLoginMember(MemberInfoReq member) throws Exception;
+
+    // 회원조회
     public MemberInfoRes getMemberById(int memberIdx) throws Exception;
 
     // 회원 가입

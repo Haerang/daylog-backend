@@ -8,22 +8,29 @@
         FROM member
     </select>
 
+    <select id="getLoginMember" resultType="MemberInfoRes" parameterType="MemberInfoReq">
+        SELECT member_idx, id, password, nickname, auth_type, token, member_created_date, member_modified_date
+        FROM member
+        WHERE id=#{id} AND password=#{password}
+    </select>
+
     <select id="getMemberById" resultType="MemberInfoRes" parameterType="int">
         SELECT member_idx, id, password, nickname, auth_type, token, member_created_date, member_modified_date
         FROM member
-        WHERE member_idx=#{memberIdx}
+        WHERE member_idx = #{memberIdx}
     </select>
 
-    <insert id="insertMember" parameterType="UserInfoReq">
-        INSERT INTO member(id, password, nickname, auth_type, token, member_created_date, member_modified_date
-        VALUES (#{id}, #{password}, #{nickname}, #{authType}, #{token}, #{memberCreatedDate}, #{memberModifiedDate}
+    <insert id="insertMember" parameterType="MemberInfoReq">
+        INSERT INTO member(id, password, nickname, auth_type, token, member_created_date)
+        VALUES (#{id}, #{password}, #{nickname}, #{authType}, #{token}, now())
     </insert>
 
-    <update id="updateMember" parameterType="UserInfoReq">
+    <update id="updateMember" parameterType="MemberInfoReq">
         UPDATE member
         SET password = #{password},
-            nickname = #{nickname}
-        WHERE member_idx = #{memberIdx}
+            nickname = #{nickname},
+            member_modified_date = now()
+        WHERE member_idx = #{idx}
     </update>
 
     <delete id="deleteMember" parameterType="int">
