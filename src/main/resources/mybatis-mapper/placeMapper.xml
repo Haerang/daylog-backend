@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kbstar.daylog.place.model.mapper.MemberMapper">
+    <select id="getAllPlaces" resultType="PlaceInfoRes">
+        SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path, place_created_date, place_modified_date
+        FROM place
+    </select>
+
+    <select id="getPlaceByCategory" resultType="PlaceInfoRes">
+        SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path, place_created_date, place_modified_date
+        FROM place
+        WHERE category LIKE CONCAT('%', #{category}, '%')
+    </select>
+
+    <select id="getPlaceById" resultType="PlaceInfoRes" parameterType="int">
+        SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path, place_created_date, place_modified_date
+        FROM place
+        WHERE place_idx = #{placeIdx}
+    </select>
+
+    <insert id="insertPlace" parameterType="PlaceInfoReq">
+        INSERT INTO place(place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path, place_created_date)
+        VALUES (#{placeName}, #{category}, #{loc1}, #{loc2}, #{address}, #{log}, #{lat}, #{placeThumbnailPath}, now())
+    </insert>
+
+    <update id="updatePlace" parameterType="PlaceInfoReq">
+        UPDATE place
+        SET placeName = #{password},
+        category = #{nickname},
+        loc1 = #{loc1},
+        loc2 = #{loc2},
+        address = #{address},
+        placeThumbnailPath = #{placeThumbnailPath},
+        member_modified_date = now()
+        WHERE place_idx = #{idx}
+    </update>
+
+    <delete id="deletePlace" parameterType="int">
+        DELETE FROM place WHERE placeIdx = #{placeIdx}
+    </delete>
+
+</mapper>

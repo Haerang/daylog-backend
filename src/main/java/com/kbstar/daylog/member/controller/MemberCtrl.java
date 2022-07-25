@@ -5,34 +5,50 @@ import com.kbstar.daylog.member.model.vo.MemberInfoRes;
 import com.kbstar.daylog.member.model.vo.MemberMsgRes;
 import com.kbstar.daylog.member.service.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping(value = "/mobile/user/")
 public class MemberCtrl {
 
     private final MemberServiceImpl memberService;
     private final MemberMsgRes memberMsgRes;
     private MemberInfoRes memberinfoRes;
     private final String FAIL = "fail";
+    private final String SUCCESS = "success";
 
-    @PostMapping("/user/register")
+    @PostMapping("register")
     @ResponseBody
     public Object register(@RequestBody MemberInfoReq memberInfoReq) throws Exception {
         System.out.println(">>> memberCtrl register");
         int code = memberService.insertMember(memberInfoReq);
         if(code == -1){
             memberMsgRes.setResMsg(FAIL);
+            return memberMsgRes;
         }
+        return memberinfoRes;
+    }
+
+    @PostMapping("idCheck")
+    @ResponseBody
+    public Object getMemberById(@RequestBody MemberInfoReq memberInfoReq) throws  Exception{
+        System.out.println(">>> memberCtrl getMemberById");
+
+        MemberInfoRes memberInfoRes = (MemberInfoRes) memberService.getMemberById(memberInfoReq);
+
+        if(memberInfoRes==null) {
+            memberMsgRes.setResMsg(SUCCESS);
+            return memberMsgRes;
+        }
+
+        memberMsgRes.setResMsg(FAIL);
         return memberMsgRes;
     }
 
-    @PostMapping("/user/login")
+    @PostMapping("login")
     @ResponseBody
     public Object login(@RequestBody MemberInfoReq memberInfoReq) throws Exception {
         System.out.println(">>> memberCtrl login");
@@ -48,7 +64,7 @@ public class MemberCtrl {
         return memberinfoRes;
     }
 
-    @PostMapping("/user/modify")
+    @PutMapping("modify")
     @ResponseBody
     public Object changeUserInfo(@RequestBody MemberInfoReq memberInfoReq) throws Exception{
         System.out.println(">>> memberCtrl changeUserInfo");
@@ -63,7 +79,7 @@ public class MemberCtrl {
         return memberinfoRes;
     }
 
-    @PostMapping("/user/delete")
+    @DeleteMapping("delete")
     @ResponseBody
     public Object deleteUser(@RequestBody MemberInfoReq memberInfoReq) throws Exception{
         System.out.println(">>> memberCtrl deleteUser");

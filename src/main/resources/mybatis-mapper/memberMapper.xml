@@ -14,7 +14,13 @@
         WHERE id=#{id} AND password=#{password}
     </select>
 
-    <select id="getMemberById" resultType="MemberInfoRes" parameterType="int">
+    <select id="getMemberById" resultType="MemberInfoRes" parameterType="MemberInfoReq">
+        SELECT member_idx, id, password, nickname, auth_type, token, member_created_date, member_modified_date
+        FROM member
+        WHERE id = #{id}
+    </select>
+
+    <select id="getMemberByIdx" resultType="MemberInfoRes" parameterType="int">
         SELECT member_idx, id, password, nickname, auth_type, token, member_created_date, member_modified_date
         FROM member
         WHERE member_idx = #{memberIdx}

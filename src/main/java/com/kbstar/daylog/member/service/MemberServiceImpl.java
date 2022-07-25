@@ -25,16 +25,32 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public Object getLoginMember(Object member) throws Exception {
-        System.out.println(">>> memberService getLoginMember");
+        System.out.println(">>> memberService getMemberById");
         final MemberInfoRes memberRes = memberMapper.getLoginMember((MemberInfoReq) member);
         System.out.println(memberRes);
         return memberRes;
     }
 
     @Override
-    public int insertMember(Object member) throws Exception {
+    public Object getMemberById(Object member) throws Exception {
+        System.out.println(">>> memberService getMemberById");
+        final MemberInfoRes memberRes = memberMapper.getMemberById((MemberInfoReq) member);
+        System.out.println(memberRes);
+        return memberRes;
+    }
+
+    @Override
+    public int insertMember(Object member){
         System.out.println(">>> memberService insertMember");
-        return memberMapper.insertMember((MemberInfoReq) member);
+        int flag;
+
+        try {
+            flag = memberMapper.insertMember((MemberInfoReq) member);
+        }catch (Exception e){
+            flag = -1;
+            System.out.println(">>>>> duplicate exeption flag: " + flag);
+        }
+        return flag;
     }
 
     @Override
@@ -42,7 +58,7 @@ public class MemberServiceImpl implements MemberService{
         System.out.println(">>> memberService updateMember");
         memberMapper.updateMember((MemberInfoReq) member);
         int memberIdx = Integer.parseInt(((MemberInfoReq) member).getIdx());
-        final MemberInfoRes memberRes = memberMapper.getMemberById(memberIdx);
+        final MemberInfoRes memberRes = memberMapper.getMemberByIdx(memberIdx);
         return memberRes;
     }
 
