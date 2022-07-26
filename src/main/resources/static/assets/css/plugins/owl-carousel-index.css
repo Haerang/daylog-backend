@@ -1,0 +1,39 @@
+body, ul, li, h1, h2, h3, h4 {
+  margin:0;
+}
+
+.my-slider-1 {
+  text-align: center;
+  margin-top:25px;
+  margin-bottom:20px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.my-slider-1 .item {
+  padding-top:80px;
+  padding-bottom:60px;
+}
+
+.my-slider-1 .owl-item.active.center {
+  z-index:5;
+}
+
+.my-slider-1 .owl-item.active.center > .item {
+  margin-left:-50px;
+  margin-right:-50px;
+  margin-top:-70px;
+}
+
+.my-slider-1 > .owl-carousel.owl-theme > .owl-nav > button {
+  background-color:blue;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  right:calc(100% + 100px);
+}
+
+.my-slider-1 > .owl-carousel.owl-theme > .owl-nav > button:last-child {
+  left:calc(100% + 100px);
+  right:auto;
+}

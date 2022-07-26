@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kbstar.daylog.index.model.mapper.IndexMapper">
+    <select id="getIndexPlaces" resultType="IndexPlaceRes">
+        SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path
+        FROM place
+        LIMIT 5
+    </select>
+
+    <select id="getIndexPosts" resultType="IndexPostRes">
+        SELECT post_idx, place_idx, member_idx, post_thumbnail_path, title, content
+        from post
+        LIMIT 5
+    </select>
+
+</mapper>

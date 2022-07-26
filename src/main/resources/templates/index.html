@@ -1,10 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Daylog</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+
+    <!-- All CSS is here
+	============================================ -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <!-- Google font CSS -->
+    <link rel="stylesheet" href="assets/css/vendor/signpainter-housescript.css">
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="assets/css/vendor/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/vendor/linearicons.css">
+    <link rel="stylesheet" href="assets/css/vendor/themify-icons.css">
+    <!-- Others CSS -->
+    <link rel="stylesheet" href="assets/css/plugins/owl-carousel.css">
+    <link rel="stylesheet" href="assets/css/plugins/owl-carousel-index.css">
+    <link rel="stylesheet" href="assets/css/plugins/slick.css">
+    <link rel="stylesheet" href="assets/css/plugins/animate.css">
+    <link rel="stylesheet" href="assets/css/plugins/jquery.mb.ytplayer.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/plugins/jarallax.css">
+    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
+    <link rel="stylesheet" href="assets/css/plugins/easyzoom.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
+
 <body>
-    Index.html
+
+<div class="main-wrapper">
+    <!-- blog area start -->
+    <div class="blog-area pt-20 pb-120">
+        <!-- owl Carusel 적용-->
+        <div class="container">
+            <!-- 인사말 영역 -->
+            <div class="pt-20">
+                <h3>해랑님, 이번 주말</h3>
+                <p></p>
+                <h3>이런곳은 어때요?</h3>
+            </div>
+
+            <div class="my-slider-1">
+                <div class="owl-carousel owl-theme">
+                    <div class="item"><img style="border-radius:10px" src="assets/images/place/agnes1.jpg"
+                                           alt=""></div>
+                    <div class="item"><img style="border-radius:10px"
+                                           src="assets/images/place/piknik1.jpg" alt=""></div>
+                    <div class="item"><img style="border-radius:10px"
+                                           src="assets/images/place/sakedong1.jpg" alt=""></div>
+                    <div class="item"><img style="border-radius:10px"
+                                           src="assets/images/place/sanarae1.jpg" alt=""></div>
+                    <div class="item"><img style="border-radius:10px"
+                                           src="assets/images/place/bawipastar1.jpg" alt=""></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="container">
+
+        </div>
+        <div class="container">
+            <div>
+                <div class="blog-wrap-4" th:each="indexPlace:${indexPlace}">
+                    <div class="blog-img-4">
+                        <a href="blog-details.html">
+                            <img th:src="@{assets/images/place/}+${indexPlace.placeThumbnailPath}" alt="">
+                        </a>
+                        <span th:text="${indexPlace.category}"></span>
+                    </div>
+                    <div class="blog-content-4">
+                        <h4><a href="#"><div th:text="${indexPlace.placeName}"></div></a></h4>
+                        <div class="blog-meta-4">
+                            <ul>
+                                <li><a href="#"><div th:text="${indexPlace.loc1}"></div></a></li>
+                                <li>|</li>
+                                <li><a href="#"><div th:text="${indexPlace.loc2}"></div></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-wrap-4">
+                    <div class="blog-img-4">
+                        <a href="blog-details.html">
+                            <img src="assets/images/blog/blog-3.png" alt="blog">
+                        </a>
+                        <span>BEAUTY</span>
+                    </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="blog-wrap-4">
+                            <div class="blog-img-4">
+                                <a href="blog-details.html">
+                                    <img src="assets/images/blog/blog-5.png" alt="blog">
+                                </a>
+                                <span>LOOK BOOK</span>
+                            </div>
+                            <div class="blog-content-4">
+                                <h3><a href="#">Sensible Beauty Tips For Enhancing Your Appearance</a></h3>
+                                <div class="blog-meta-4">
+                                    <ul>
+                                        <li>By <a href="#">by John Snow</a></li>
+                                        <li>-</li>
+                                        <li><a href="#">April 17,2019</a></li>
+                                    </ul>
+                                </div>
+                                <p>Ut tempus leo sed magna hendrerit, non congue libero blandit. Vestibulum libero diam, convallis in arcu ut, semper vulputate dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae usce luctus fringilla fermentum…</p>
+                                <div class="blog-btn-2 btn-hover">
+                                    <a class="bg-black-hover" href="product-details.html">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <footer>
+    </footer>
+</div>
+
+<!-- All JS is here
+============================================ -->
+
+<!-- Modernizer JS -->
+<script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
+<!-- jquery -->
+<script src="assets/js/vendor/jquery-v3.6.0.min.js"></script>
+<!-- Popper JS -->
+<script src="assets/js/vendor/popper.js"></script>
+<!-- Bootstrap JS -->
+<script src="assets/js/vendor/bootstrap.min.js"></script>
+<script src="assets/js/plugins/owl-carousel.js"></script>
+<script src="assets/js/plugins/owl-carousel-index.js"></script>
+<script src="assets/js/plugins/slick.js"></script>
+<script src="assets/js/plugins/jquery.mb.ytplayer.min.js"></script>
+<script src="assets/js/plugins/magnific-popup.js"></script>
+<script src="assets/js/plugins/wow.js"></script>
+<script src="assets/js/plugins/instafeed.js"></script>
+<script src="assets/js/plugins/countdown.js"></script>
+<script src="assets/js/plugins/jarallax.min.js"></script>
+<script src="assets/js/plugins/images-loaded.js"></script>
+<script src="assets/js/plugins/isotope.js"></script>
+<script src="assets/js/plugins/tilt.js"></script>
+<script src="assets/js/plugins/jquery-ui-touch-punch.js"></script>
+<script src="assets/js/plugins/jquery-ui.js"></script>
+<script src="assets/js/plugins/easyzoom.js"></script>
+<script src="assets/js/plugins/resizesensor.js"></script>
+<script src="assets/js/plugins/sticky-sidebar.js"></script>
+<script src="assets/js/plugins/scrollup.js"></script>
+<script src="assets/js/plugins/ajax-mail.js"></script>
+<!-- Main JS -->
+<script src="assets/js/main.js"></script>
+
 </body>
+
 </html>
