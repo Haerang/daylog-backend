@@ -3,14 +3,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kbstar.daylog.index.model.mapper.IndexMapper">
-    <select id="getIndexPlaces" resultType="IndexPlaceRes">
-        SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path
+    <select id="getFirstIndexPlaces" resultType="IndexPlaceRes">
+        SELECT place_idx, place_name, category, loc1, loc2, place_thumbnail_path
         FROM place
-        LIMIT 5
+        WHERE loc2 like '%연남%'
+        ORDER BY place_created_date desc LIMIT 5
+
+    </select>
+
+    <select id="getSecondIndexPlaces" resultType="IndexPlaceRes">
+        SELECT place_idx, place_name, category, loc1, loc2, place_thumbnail_path
+        FROM place
+        WHERE category='음식점' AND loc2 like '%용산%'
     </select>
 
     <select id="getIndexPosts" resultType="IndexPostRes">
-        SELECT post_idx, place_idx, member_idx, post_thumbnail_path, title, content
+        SELECT post_idx, post_thumbnail_path, title
         from post
         LIMIT 5
     </select>

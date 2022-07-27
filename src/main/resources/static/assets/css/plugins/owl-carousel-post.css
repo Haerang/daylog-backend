@@ -1,0 +1,57 @@
+.owl-carousel .item{
+		padding:0 !important;
+		height:400px !important;;
+	}
+
+	.owl-carousel .owl-item div{
+           position: relative;
+           overflow: hidden;
+         }
+      .owl-carousel .owl-item img{
+           display: block;
+           width: 100%;
+           height: auto;
+           -webkit-border-radius: 3px;
+           -moz-border-radius: 3px;
+           border-radius: 3px;
+           max-height: 1490px;
+           -webkit-transition: all 20s;
+           -moz-transition: all 20s;
+           -o-transition: all 20s;
+           transition: all 20s;
+           transition-timing-function:linear;
+         }
+ .owl-carousel .owl-item:nth-child(even) img{
+             -webkit-transform: scale(1.4);
+             -ms-transform: scale(1.4);
+             transform: scale(1.4);
+             -webkit-transform-origin: bottom right;
+    -moz-transform-origin: bottom right;
+     -ms-transform-origin: bottom right;
+      -o-transform-origin: bottom right;
+         transform-origin: bottom right;
+           }
+
+.owl-carousel .owl-item:nth-child(odd) img{
+             -webkit-transform: scale(1.1);
+             -ms-transform: scale(1.1);
+             transform: scale(1.1);
+             -webkit-transform-origin: bottom left;
+    -moz-transform-origin: bottom left;
+     -ms-transform-origin: bottom left;
+      -o-transform-origin: bottom left;
+         transform-origin: bottom left;
+           }
+
+
+.owl-carousel .owl-item.active:nth-child(even) img{
+               -webkit-transform: scale(1.1);
+               -ms-transform: scale(1.1);
+               transform: scale(1.1);
+             }
+
+  .owl-carousel .owl-item.active:nth-child(odd) img{
+               -webkit-transform: scale(1.4);
+               -ms-transform: scale(1.4);
+               transform: scale(1.4);
+             }

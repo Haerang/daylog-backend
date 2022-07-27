@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="assets/css/vendor/themify-icons.css">
     <!-- Others CSS -->
     <link rel="stylesheet" href="assets/css/plugins/owl-carousel.css">
-    <link rel="stylesheet" href="assets/css/plugins/owl-carousel-index.css">
+    <link rel="stylesheet" href="assets/css/plugins/owl-carousel-post.css">
     <link rel="stylesheet" href="assets/css/plugins/slick.css">
     <link rel="stylesheet" href="assets/css/plugins/animate.css">
     <link rel="stylesheet" href="assets/css/plugins/jquery.mb.ytplayer.min.css">
@@ -41,85 +41,29 @@
 
 <div class="main-wrapper">
     <!-- blog area start -->
-    <div class="blog-area pt-20 pb-120">
-        <!-- owl Carusel 적용-->
+    <div class="blog-area pt-120 pb-120">
         <div class="container">
-            <!-- 인사말 영역 -->
-            <div class="pt-20">
-                <h3>해랑님, 이번 주말</h3>
-                <p></p>
-                <h3>이런곳은 어때요?</h3>
-            </div>
-
-            <div class="my-slider-1">
-                <div class="owl-carousel owl-theme">
-                    <div class="item" th:each="indexPost:${indexPost}">
-                        <div id="postImg" th:value="${indexPost.postIdx}">
-                            <a href="post/">
-                                <img style="border-radius:10px" th:src="@{assets/images/place/}+${indexPost.postThumbnailPath}" alt="${indexPost.title}">
-                            </a>
+            <div class="row flex-row-reverse">
+                <div class="blog-details-wrap ml-20">
+                    <div class="blog-details-content">
+                        <div class="blog-details-img">
+                            <img src="assets/images/blog/blog-1.png" alt="blog">
+                            <span>LIFE STYLE</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="container">
-
-        </div>
-        <div class="container">
-            <div class="mtb-50">
-                <h3>나만 알고 싶은 연남동 핫플레이스 😎</h3>
-            </div>
-
-            <div>
-                <div class="blog-wrap-4" th:each="firstPlaceList:${firstPlaceList}">
-                    <div style="border-radius:10px" class="blog-img-4">
-                        <a href="blog-details.html">
-                            <img th:src="@{assets/images/place/}+${firstPlaceList.placeThumbnailPath}" alt="">
-                        </a>
-                        <span th:text="${firstPlaceList.category}"></span>
-                    </div>
-                    <div class="blog-content-4">
-                        <h4><a href="#"><div th:text="${firstPlaceList.placeName}"></div></a></h4>
-                        <div class="blog-meta-4">
+                        <h3>Always Look On The Bright Side Of Life</h3>
+                        <div class="blog-meta-5">
                             <ul>
-                                <li><a href="#"><div th:text="${firstPlaceList.loc1}"></div></a></li>
-                                <li>|</li>
-                                <li><a href="#"><div th:text="${firstPlaceList.loc2}"></div></a></li>
+                                <li>By <a href="#">by John Snow</a></li>
+                                <li>-</li>
+                                <li><a href="#">April 17,2019</a></li>
                             </ul>
                         </div>
+                        <p>Ut tempus leo sed magna hendrerit, non congue libero blandit. Vestibulum libero diam, convallis in arcu ut, semper vulputate dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae usce luctus fringilla fermentum…</p>
                     </div>
                 </div>
-
-                <div class="mtb-50">
-                    <h3>서울에서 맛보는 세계음식 🍲</h3>
-                </div>
-
-                <div class="blog-wrap-4" th:each="secondPlaceList:${secondPlaceList}">
-                    <div style="border-radius:10px" class="blog-img-4">
-                        <a href="blog-details.html">
-                            <img th:src="@{assets/images/place/}+${secondPlaceList.placeThumbnailPath}" alt="">
-                        </a>
-                        <span th:text="${secondPlaceList.category}"></span>
-                    </div>
-                    <div class="blog-content-4">
-                        <h4><a href="#"><div th:text="${secondPlaceList.placeName}"></div></a></h4>
-                        <div class="blog-meta-4">
-                            <ul>
-                                <li><a href="#"><div th:text="${secondPlaceList.loc1}"></div></a></li>
-                                <li>|</li>
-                                <li><a href="#"><div th:text="${secondPlaceList.loc2}"></div></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
         </div>
     </div>
-
     <footer>
     </footer>
 </div>
@@ -136,7 +80,7 @@
 <!-- Bootstrap JS -->
 <script src="assets/js/vendor/bootstrap.min.js"></script>
 <script src="assets/js/plugins/owl-carousel.js"></script>
-<script src="assets/js/plugins/owl-carousel-index.js"></script>
+<script src="assets/js/plugins/owl-carousel-post.js"></script>
 <script src="assets/js/plugins/slick.js"></script>
 <script src="assets/js/plugins/jquery.mb.ytplayer.min.js"></script>
 <script src="assets/js/plugins/magnific-popup.js"></script>

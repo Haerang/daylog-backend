@@ -14,17 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexCtrl {
 
     private final IndexServiceImpl indexService;
-    private final IndexPlaceRes indexPlaceRes;
-    private final IndexPostRes indexPostRes;
 
     @GetMapping("/")
     public String index(Model model) throws Exception{
         System.out.println(">>> indexCtrl index");
 
-        Object placeList = indexService.getIndexPlaces();
+        Object firstPlaceList = indexService.getFirstIndexPlaces();
+        Object secondPlaceList = indexService.getSecondIndexPlaces();
+
         Object postList = indexService.getIndexPosts();
 
-        model.addAttribute("indexPlace", placeList);
+        model.addAttribute("firstPlaceList", firstPlaceList);
+        model.addAttribute("secondPlaceList", secondPlaceList);
         model.addAttribute("indexPost", postList);
 
         // index로 이동

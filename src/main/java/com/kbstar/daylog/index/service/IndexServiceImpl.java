@@ -15,9 +15,15 @@ public class IndexServiceImpl implements IndexService{
     }
 
     @Override
-    public Object getIndexPlaces() throws Exception {
-        System.out.println(">>> indexService getMainPlaces");
-        return indexMapper.getIndexPlaces();
+    public Object getFirstIndexPlaces() throws Exception {
+        System.out.println(">>> indexService getFirstIndexPlaces");
+        return indexMapper.getFirstIndexPlaces();
+    }
+
+    @Override
+    public Object getSecondIndexPlaces() throws Exception {
+        System.out.println(">>> indexService getSecondIndexPlaces");
+        return indexMapper.getSecondIndexPlaces();
     }
 
     @Override

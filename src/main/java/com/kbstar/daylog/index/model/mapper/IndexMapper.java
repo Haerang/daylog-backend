@@ -9,7 +9,8 @@ import java.util.List;
 @Mapper
 public interface IndexMapper {
     // Index 화면 Place 조회
-    public List<IndexPlaceRes> getIndexPlaces() throws Exception;
+    public List<IndexPlaceRes> getFirstIndexPlaces() throws Exception;
+    public List<IndexPlaceRes> getSecondIndexPlaces() throws Exception;
 
     // Index 화면 Post 조회
     public List<IndexPostRes> getIndexPosts() throws Exception;

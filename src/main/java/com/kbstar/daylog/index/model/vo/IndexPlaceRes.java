@@ -15,8 +15,5 @@ public class IndexPlaceRes {
     private String category;
     private String loc1;
     private String loc2;
-    private String address;
-    private String log;
-    private String lat;
     private String placeThumbnailPath;
 }
