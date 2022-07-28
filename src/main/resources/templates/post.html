@@ -40,25 +40,29 @@
 <body>
 
 <div class="main-wrapper">
+    <div class="blog-details-img">
+        <!--owl carousel -->
+        <div class="container-fluid">
+            <div class="owl-carousel owl-theme">
+                <div th:each="postImageList:${postImageList}" class="item">
+                    <img th:src="@{assets/images/post/}+${postImageList.imagePath}" >
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- blog area start -->
-    <div class="blog-area pt-120 pb-120">
+    <div class="blog-area pt-20 pb-120">
         <div class="container">
             <div class="row flex-row-reverse">
                 <div class="blog-details-wrap ml-20">
                     <div class="blog-details-content">
-                        <div class="blog-details-img">
-                            <img src="assets/images/blog/blog-1.png" alt="blog">
-                            <span>LIFE STYLE</span>
-                        </div>
-                        <h3>Always Look On The Bright Side Of Life</h3>
+                        <h3><div th:text="${selectedPost.title}"></div></h3>
                         <div class="blog-meta-5">
                             <ul>
-                                <li>By <a href="#">by John Snow</a></li>
-                                <li>-</li>
-                                <li><a href="#">April 17,2019</a></li>
+                                <li><h5 th:text="${selectedPost.nickname}"/></li>
                             </ul>
                         </div>
-                        <p>Ut tempus leo sed magna hendrerit, non congue libero blandit. Vestibulum libero diam, convallis in arcu ut, semper vulputate dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae usce luctus fringilla fermentum…</p>
+                        <p><span th:text="${selectedPost.content}"></span></p>
                     </div>
                 </div>
             </div>

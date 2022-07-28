@@ -54,11 +54,9 @@
             <div class="my-slider-1">
                 <div class="owl-carousel owl-theme">
                     <div class="item" th:each="indexPost:${indexPost}">
-                        <div id="postImg" th:value="${indexPost.postIdx}">
-                            <a href="post/">
-                                <img style="border-radius:10px" th:src="@{assets/images/place/}+${indexPost.postThumbnailPath}" alt="${indexPost.title}">
-                            </a>
-                        </div>
+                        <a th:href="@{post?idx=}+${indexPost.postIdx}">
+                            <img style="border-radius:10px" th:src="@{assets/images/post/}+${indexPost.postThumbnailPath}" alt="${indexPost.title}">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -68,7 +66,7 @@
 
         </div>
         <div class="container">
-            <div class="mtb-50">
+            <div class="mt-50 mb-30">
                 <h3>나만 알고 싶은 연남동 핫플레이스 😎</h3>
             </div>
 
@@ -92,7 +90,7 @@
                     </div>
                 </div>
 
-                <div class="mtb-50">
+                <div class="mt-50 mb-30">
                     <h3>서울에서 맛보는 세계음식 🍲</h3>
                 </div>
 

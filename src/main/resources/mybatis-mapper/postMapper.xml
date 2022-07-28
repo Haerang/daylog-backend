@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kbstar.daylog.post.model.mapper.PostMapper">
+    <select id="getPostById" parameterType="int" resultType="PostInfoRes">
+        SELECT p.post_idx, p.post_thumbnail_path, p.title, p.content, m.nickname
+        FROM post p, member m
+        WHERE p.member_idx  = m.member_idx and post_idx=#{postIdx};
+    </select>
+
+    <select id="getPostImagesById" parameterType="int" resultType="PostImageRes">
+        SELECT i.image_idx, i.image_path
+        FROM image i, post p
+        WHERE p.post_idx=#{postIdx} and i.post_idx=p.post_idx;
+    </select>
+
+</mapper>
