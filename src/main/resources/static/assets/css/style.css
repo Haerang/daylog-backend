@@ -14367,6 +14367,12 @@ textarea:focus {
   margin: 0 0 13px;
 }
 
+.post-image {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 13 13px;
+}
+
 .blog-wrap-4 .blog-img-4 > a {
   display: block;
 }
