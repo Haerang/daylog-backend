@@ -8,10 +8,16 @@
         FROM place
     </select>
 
-    <select id="getPlaceByCategory" resultType="PlaceInfoRes">
+    <select id="getPlaceByCategory" resultType="PlaceInfoRes" parameterType="PlaceInfoReq">
         SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path, place_created_date, place_modified_date
         FROM place
         WHERE category LIKE CONCAT('%', #{category}, '%')
+    </select>
+
+    <select id="getPlaceByRegion" resultType="PlaceInfoRes" parameterType="PlaceInfoReq">
+        SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path
+        FROM place
+        WHERE loc1 LIKE CONCAT('%', #{loc1}, '%')
     </select>
 
     <select id="getPlaceById" resultType="PlaceInfoRes" parameterType="int">
