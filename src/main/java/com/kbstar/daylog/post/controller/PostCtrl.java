@@ -13,15 +13,18 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping(value="/post")
 public class PostCtrl {
+
     private final PostServiceImpl postService;
 
     @GetMapping
     @ResponseBody
     public Object selectPost(@RequestParam(value="idx") int postIdx, ModelAndView modelAndView) throws Exception{
-        System.out.println(">>> postCtrl register");
+        System.out.println(">>> postCtrl selctPost");
 
         PostInfoRes selectedPost = (PostInfoRes) postService.getPostById(postIdx);
         List<PostImageRes> postImageList = (List<PostImageRes>) postService.getPostImagesById(postIdx);
+        String nlString = System.getProperty("line.separator").toString();
+
         modelAndView.setViewName("post");
         modelAndView.addObject("selectedPost", selectedPost);
         modelAndView.addObject("postImageList", postImageList);

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.kbstar.daylog.place.model.mapper.MemberMapper">
+<mapper namespace="com.kbstar.daylog.place.model.mapper.PlaceMapper">
     <select id="getAllPlaces" resultType="PlaceInfoRes">
         SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path, place_created_date, place_modified_date
         FROM place

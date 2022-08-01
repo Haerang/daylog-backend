@@ -1,12 +1,12 @@
 package com.kbstar.daylog.place.model.mapper;
 
-import com.kbstar.daylog.member.model.vo.MemberInfoReq;
-import com.kbstar.daylog.member.model.vo.MemberInfoRes;
 import com.kbstar.daylog.place.model.vo.PlaceInfoReq;
 import com.kbstar.daylog.place.model.vo.PlaceInfoRes;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface PlaceMapper {
     // 장소 전체 조회
     public List<PlaceInfoRes> getAllPlaces() throws Exception;
