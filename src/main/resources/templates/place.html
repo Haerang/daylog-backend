@@ -105,9 +105,7 @@
                             <script>
                             /*<![CDATA[*/
                                 $(document).ready(function(){
-                                    console.log('11')
                                     $("#posting-tab").click(function() {
-                                        console.log('22')
                                       $.ajax({
                                         url  : "/place/posting",
                                         type : "post",
@@ -117,7 +115,6 @@
                                             "placeIdx" : [[${selectedPlace.placeIdx}]]
                                         }),
                                         success : function(data) {
-                                            console.log("sucdess......")
                                             $("#postTitle").empty()
                                             var txt = ""
                                             $.each(data , function(idx , obj) {
