@@ -14,10 +14,12 @@
         WHERE category LIKE CONCAT('%', #{category}, '%')
     </select>
 
-    <select id="getPlaceByRegion" resultType="PlaceInfoRes" parameterType="PlaceInfoReq">
+    <select id="getPlaceIf" resultType="PlaceInfoRes" parameterType="PlaceInfoReq">
         SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path
         FROM place
+        <if test = "loc1 != '전체'">
         WHERE loc1 LIKE CONCAT('%', #{loc1}, '%')
+        </if>
     </select>
 
     <select id="getPlaceById" resultType="PlaceInfoRes" parameterType="int">

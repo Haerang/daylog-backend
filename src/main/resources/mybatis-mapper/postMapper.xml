@@ -15,4 +15,11 @@
         WHERE p.post_idx=#{postIdx} and i.post_idx=p.post_idx;
     </select>
 
+    <select id="getPostListByPlace" parameterType="PlaceInfoReq" resultType="PostInfoRes">
+        SELECT post_idx, post_thumbnail_path, title, content
+        FROM post
+        WHERE place_idx=#{placeIdx}
+    </select>
+
+
 </mapper>

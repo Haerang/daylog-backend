@@ -13,7 +13,6 @@ import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value="/place")
 public class PlaceCtrl {
 
     private final PlaceService placeService;
@@ -22,7 +21,7 @@ public class PlaceCtrl {
     private final String FAIL = "fail";
     private final String SUCCESS = "success";
 
-    @GetMapping
+    @GetMapping(value="/place")
     @ResponseBody
     public Object selectPlace(@RequestParam(value="idx") int placeIdx, ModelAndView modelAndView) throws Exception{
         System.out.println(">>>> placCtrl selectPlace");
@@ -35,11 +34,11 @@ public class PlaceCtrl {
         return modelAndView;
     }
 
-    @PostMapping("/region")
+    @PostMapping("mobile/place/region")
     @ResponseBody
     public Object selectByRegion(@RequestBody PlaceInfoReq placeInfoReq) throws Exception{
         System.out.println(">>>> placeCtrl selectByRegion");
-        placeList = (List<PlaceInfoRes>) placeService.getPlaceByRegion(placeInfoReq);
+        placeList = (List<PlaceInfoRes>) placeService.getPlaceIf(placeInfoReq);
 
         if(Objects.isNull(placeList)){
             placeMsgRes.setResMsg(FAIL);
@@ -48,4 +47,5 @@ public class PlaceCtrl {
 
         return placeList;
     }
+
 }

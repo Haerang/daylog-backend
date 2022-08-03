@@ -22,4 +22,10 @@ public class PostServiceImpl implements PostService{
         System.out.println(">>>>> postService getPostImagesById");
         return postMapper.getPostImagesById(postIdx);
     }
+
+    @Override
+    public Object getPostListByPlace(Object place) throws Exception {
+        System.out.println(">>>> postService getPostListByPlace");
+        return postMapper.getPostListByPlace(place);
+    }
 }

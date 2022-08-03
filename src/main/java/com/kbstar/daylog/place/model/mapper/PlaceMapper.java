@@ -15,7 +15,7 @@ public interface PlaceMapper {
     public List<PlaceInfoRes> getPlacesByCategory(PlaceInfoReq place) throws Exception;
 
     // 지역별 장소 조회
-    public List<PlaceInfoRes> getPlaceByRegion(PlaceInfoReq place) throws Exception;
+    public List<PlaceInfoRes> getPlaceIf(PlaceInfoReq place) throws Exception;
 
     // 장소 단일 조회
     public PlaceInfoRes getPlaceById(int placeIdx) throws Exception;

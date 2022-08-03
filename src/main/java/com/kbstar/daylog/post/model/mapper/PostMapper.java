@@ -10,4 +10,5 @@ import java.util.List;
 public interface PostMapper {
     public PostInfoRes getPostById(int postIdx) throws Exception;
     public List<PostImageRes> getPostImagesById(int postIdx) throws Exception;
+    public List<PostInfoRes> getPostListByPlace(Object place) throws Exception;
 }

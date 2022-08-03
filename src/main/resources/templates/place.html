@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="assets/css/plugins/easyzoom.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 </head>
 
@@ -63,7 +64,7 @@
             <div class="description-review-wrapper">
                 <div class="description-review-topbar nav" style="text-align:center;">
                     <a class="active" data-bs-toggle="tab" href="#des-details1">위치</a>
-                    <a data-bs-toggle="tab" href="#des-details2">포스팅</a>
+                    <a id="posting-tab" data-bs-toggle="tab" href="#des-details2">포스팅</a>
                 </div>
                 <div class="tab-content description-review-bottom">
                     <div id="des-details1" class="tab-pane active">
@@ -101,10 +102,36 @@
                     </div>
                     <div id="des-details2" class="tab-pane">
                         <div class="additional-info">
-                            <ul>
-                                <li><span>Size</span>L, S, XL, XXL</li>
-                                <li><span>Brands</span>Airi, Draven, Mango, Valentino, Zara</li>
-                                <li><span>Color</span> Blue, Brown, Green, Pink, Violet, White</li>
+                            <script>
+                            /*<![CDATA[*/
+                                $(document).ready(function(){
+                                    console.log('11')
+                                    $("#posting-tab").click(function() {
+                                        console.log('22')
+                                      $.ajax({
+                                        url  : "/place/posting",
+                                        type : "post",
+                                        contentType: "application/json",
+                                        dataType : "json",
+                                        data : JSON.stringify({
+                                            "placeIdx" : [[${selectedPlace.placeIdx}]]
+                                        }),
+                                        success : function(data) {
+                                            console.log("sucdess......")
+                                            $("#postTitle").empty()
+                                            var txt = ""
+                                            $.each(data , function(idx , obj) {
+                                                txt += "<a href='/post?idx="+obj.postIdx+"'><li style='margin-top:10px; font-size:18px; padding-left: 20px; font-weight:bold; color:#555555;'>"+obj.title+"<span style='position:absolute; right: 0px; vertical-align: middle;' class='material-icons'>chevron_right</span></li></a><hr/>"
+                                            })
+                                            $("#postTitle").append(txt)
+                                        }
+                                      })
+                                    })
+                                })
+                            /*]]>*/
+                            </script>
+                            <ul id="postTitle">
+
                             </ul>
                         </div>
                     </div>

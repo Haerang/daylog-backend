@@ -1,5 +1,6 @@
 package com.kbstar.daylog.post.controller;
 
+import com.kbstar.daylog.place.model.vo.PlaceInfoReq;
 import com.kbstar.daylog.post.model.vo.PostImageRes;
 import com.kbstar.daylog.post.model.vo.PostInfoRes;
 import com.kbstar.daylog.post.service.PostServiceImpl;
@@ -11,12 +12,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value="/post")
 public class PostCtrl {
 
     private final PostServiceImpl postService;
+    private List<PostInfoRes> postList;
 
-    @GetMapping
+    @GetMapping(value="/post")
     @ResponseBody
     public Object selectPost(@RequestParam(value="idx") int postIdx, ModelAndView modelAndView) throws Exception{
         System.out.println(">>> postCtrl selctPost");
@@ -30,5 +31,14 @@ public class PostCtrl {
         modelAndView.addObject("postImageList", postImageList);
 
         return modelAndView;
+    }
+
+    @PostMapping("/place/posting")
+    @ResponseBody
+    public Object selectPostByPlaceIdx(@RequestBody PlaceInfoReq placeInfoReq) throws Exception{
+        System.out.println(">>>>> placeCtrl selectPostByPlaceIdx");
+        postList = (List<PostInfoRes>) postService.getPostListByPlace(placeInfoReq);
+        System.out.println(postList);
+        return postList;
     }
 }

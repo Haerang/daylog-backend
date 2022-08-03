@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
     <link rel="stylesheet" href="assets/css/plugins/easyzoom.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
@@ -76,12 +77,16 @@
                         <span th:text="${firstPlaceList.category}"></span>
                     </div>
                     <div class="blog-content-4">
-                        <h4><a href="#"><div th:text="${firstPlaceList.placeName}"></div></a></h4>
+                        <div>
+                        <h4><span th:text="${firstPlaceList.placeName}"/>
+                            <span style="position:absolute; right: 20px; vertical-align: middle;" class="material-icons save">bookmark</span>
+                        </h4>
+                        </div>
                         <div class="blog-meta-4">
                             <ul>
-                                <li><a href="#"><div th:text="${firstPlaceList.loc1}"></div></a></li>
+                                <li><div th:text="${firstPlaceList.loc1}"/></li>
                                 <li>|</li>
-                                <li><a href="#"><div th:text="${firstPlaceList.loc2}"></div></a></li>
+                                <li><div th:text="${firstPlaceList.loc2}"/></li>
                             </ul>
                         </div>
                     </div>
@@ -99,18 +104,16 @@
                         <span th:text="${secondPlaceList.category}"></span>
                     </div>
                     <div class="blog-content-4">
-                        <h4><a href="#"><div th:text="${secondPlaceList.placeName}"></div></a></h4>
+                        <h4><div th:text="${secondPlaceList.placeName}"/></h4>
                         <div class="blog-meta-4">
                             <ul>
-                                <li><a href="#"><div th:text="${secondPlaceList.loc1}"></div></a></li>
+                                <li><div th:text="${secondPlaceList.loc1}"/></li>
                                 <li>|</li>
-                                <li><a href="#"><div th:text="${secondPlaceList.loc2}"></div></a></li>
+                                <li><div th:text="${secondPlaceList.loc2}"/></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

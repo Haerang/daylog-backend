@@ -22,9 +22,9 @@ public class PlaceServiceImpl implements PlaceService{
     }
 
     @Override
-    public Object getPlaceByRegion(Object place) throws Exception {
+    public Object getPlaceIf(Object place) throws Exception {
         System.out.println(">>>> placeService getPlaceByRegion");
-        final List<PlaceInfoRes> placeList = placeMapper.getPlaceByRegion((PlaceInfoReq) place);
+        final List<PlaceInfoRes> placeList = placeMapper.getPlaceIf((PlaceInfoReq) place);
         return placeList;
     }
 

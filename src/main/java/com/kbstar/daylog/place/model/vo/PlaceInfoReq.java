@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @ToString
 @Component
 public class PlaceInfoReq {
+    private int placeIdx;
     private String category;
     private String loc1;
 }
