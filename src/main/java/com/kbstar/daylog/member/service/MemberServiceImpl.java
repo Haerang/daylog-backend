@@ -1,6 +1,6 @@
 package com.kbstar.daylog.member.service;
 
-import com.kbstar.daylog.member.model.vo.User;
+import com.kbstar.daylog.common.jwt.User;
 import com.kbstar.daylog.member.model.mapper.MemberMapper;
 import com.kbstar.daylog.member.model.vo.MemberInfoReq;
 import com.kbstar.daylog.member.model.vo.MemberInfoRes;
@@ -47,6 +47,14 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
+    public int updateToken(Object member) throws Exception {
+        System.out.println(">>>> memberService updateToken");
+        System.out.println(" >>>>>>>>>>>>>>>>>>>> "+member) ;
+
+        return memberMapper.updateToken((MemberInfoReq) member);
+    }
+
+    @Override
     public int insertMember(Object member){
         System.out.println(">>> memberService insertMember");
         int flag;
@@ -57,7 +65,7 @@ public class MemberServiceImpl implements MemberService{
             flag = -1;
             System.out.println(">>>>> duplicate exeption flag: " + flag);
         }
-        return flag;
+        return Integer.parseInt( ((MemberInfoReq)member).getIdx() );
     }
 
     @Override

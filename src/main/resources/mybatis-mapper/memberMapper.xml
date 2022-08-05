@@ -32,7 +32,13 @@
         WHERE member_idx = #{memberIdx}
     </select>
 
-    <insert id="insertMember" parameterType="MemberInfoReq">
+    <update id="updateToken" parameterType="MemberInfoReq">
+        UPDATE member
+        SET token = #{token}
+        WHERE member_idx = #{idx}
+    </update>
+
+    <insert id="insertMember" parameterType="MemberInfoReq" useGeneratedKeys="true" keyProperty="idx" keyColumn="member_idx">
         INSERT INTO member(id, password, nickname, auth_type, token, member_created_date)
         VALUES (#{id}, #{password}, #{nickname}, #{authType}, #{token}, now())
     </insert>

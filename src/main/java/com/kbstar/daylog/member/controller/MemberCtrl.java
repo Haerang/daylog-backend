@@ -4,13 +4,14 @@ import com.kbstar.daylog.common.jwt.JwtTokenProvider;
 import com.kbstar.daylog.member.model.vo.MemberInfoReq;
 import com.kbstar.daylog.member.model.vo.MemberInfoRes;
 import com.kbstar.daylog.member.model.vo.MemberMsgRes;
-import com.kbstar.daylog.member.model.vo.User;
+import com.kbstar.daylog.common.jwt.User;
 import com.kbstar.daylog.member.service.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,6 +30,8 @@ public class MemberCtrl {
     @ResponseBody
     public Object register(@RequestBody MemberInfoReq memberInfoReq) throws Exception {
         System.out.println(">>> memberCtrl register");
+        System.out.println(memberInfoReq);
+
         int code = memberService.insertMember(memberInfoReq);
         if(code == -1){
             memberMsgRes.setResMsg(FAIL);
@@ -57,27 +60,36 @@ public class MemberCtrl {
     @ResponseBody
     public Object login(@RequestBody MemberInfoReq memberInfoReq) throws Exception {
         System.out.println(">>> memberCtrl login");
+        System.out.println(">>>> memberInfoReq : " + memberInfoReq.toString());
+
+        if(memberInfoReq.getAuthType().equals("kakao")){
+            if(memberService.getMemberById(memberInfoReq.getId()) == null){
+                System.out.println(" if null >>>>>>>>> ");
+                memberInfoReq.setPassword(UUID.randomUUID().toString());
+                int idx = memberService.insertMember(memberInfoReq);
+                memberInfoReq.setIdx(idx+"");
+            }
+        }
 
         User user = memberService.findById(memberInfoReq.getId());
         System.out.println(">>>> user: " + user);
 
-        if (!passwordEncoder.matches(memberInfoReq.getPassword(), user.getPassword())) {
-            throw new IllegalArgumentException("잘못된 비밀번호입니다.");
-        }
-
-        // 로그인 실패 시 에러 메시지 넘겨주기
         if(Objects.isNull(user)){
+            // 로그인 실패 시 에러 메시지 넘겨주기
             memberMsgRes.setResMsg(FAIL);
             return memberMsgRes;
         }
 
+        // 토큰 발급
+        String token = jwtTokenProvider.createToken(user.getUsername(), user.getNickname());
+        memberInfoReq.setToken(token);
+
+        // 발급한 토큰값을 DB에 업데이트
+        System.out.println("updateToken >>>>>>>>>>> "+memberInfoReq);
+        memberService.updateToken(memberInfoReq);
+
         // 로그인 성공 시 jwt 토큰 넘겨주기
-        return jwtTokenProvider.createToken(user.getUsername(), user.getNickname());
-
-
-//        memberinfoRes = (MemberInfoRes) memberService.getLoginMember(memberInfoReq);
-//        // 로그인 성공하였을 경우, native에 로그인한 사람 정보를 넘겨줌
-//        return memberinfoRes;
+        return memberInfoReq;
     }
 
     @PutMapping("modify")
@@ -105,7 +117,5 @@ public class MemberCtrl {
         }
         return memberMsgRes;
     }
-
-
 
 }

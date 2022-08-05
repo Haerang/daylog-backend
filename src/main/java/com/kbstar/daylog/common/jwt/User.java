@@ -1,4 +1,4 @@
-package com.kbstar.daylog.member.model.vo;
+package com.kbstar.daylog.common.jwt;
 
 import lombok.Getter;
 import lombok.Setter;
