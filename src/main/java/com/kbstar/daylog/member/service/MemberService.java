@@ -1,9 +1,6 @@
 package com.kbstar.daylog.member.service;
 
-import com.kbstar.daylog.member.model.vo.MemberInfoReq;
-import com.kbstar.daylog.member.model.vo.MemberInfoRes;
-
-import java.util.List;
+import com.kbstar.daylog.member.model.vo.User;
 
 public interface MemberService {
     // 회원 전체 조회
@@ -13,7 +10,10 @@ public interface MemberService {
     public Object getLoginMember(Object member) throws Exception;
 
     // 회원 아이디 중복 조회
-    public Object getMemberById(Object member) throws Exception;
+    public Object getMemberById(String id) throws Exception;
+
+    // JWT 토큰 발급을 위한 조회
+    public User findById(String id) throws Exception;
 
     // 회원 가입
     public int insertMember(Object member);

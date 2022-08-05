@@ -1,5 +1,6 @@
 package com.kbstar.daylog.member.service;
 
+import com.kbstar.daylog.member.model.vo.User;
 import com.kbstar.daylog.member.model.mapper.MemberMapper;
 import com.kbstar.daylog.member.model.vo.MemberInfoReq;
 import com.kbstar.daylog.member.model.vo.MemberInfoRes;
@@ -32,11 +33,17 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public Object getMemberById(Object member) throws Exception {
+    public Object getMemberById(String id) throws Exception {
         System.out.println(">>> memberService getMemberById");
-        final MemberInfoRes memberRes = memberMapper.getMemberById((MemberInfoReq) member);
+        final MemberInfoRes memberRes = memberMapper.getMemberById(id);
         System.out.println(memberRes);
         return memberRes;
+    }
+
+    @Override
+    public User findById(String id) throws Exception {
+        System.out.println(">>> memberService findById");
+        return memberMapper.findById(id);
     }
 
     @Override

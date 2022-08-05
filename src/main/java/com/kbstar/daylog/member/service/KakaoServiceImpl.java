@@ -7,21 +7,19 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.kbstar.daylog.member.model.mapper.MemberMapper;
 import com.kbstar.daylog.member.model.vo.MemberInfoReq;
+import com.kbstar.daylog.member.model.vo.MemberInfoRes;
 import com.kbstar.daylog.member.model.vo.MemberMsgRes;
-import lombok.RequiredArgsConstructor;
+import com.kbstar.daylog.member.model.vo.User;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.ResourceBundle;
 import java.util.UUID;
 
 @Service
@@ -38,32 +36,27 @@ public class KakaoServiceImpl implements SocialService{
     }
 
     @Override
-    public Object socialLogin(String code, HttpServletResponse response) throws Exception {
+    public User socialLogin(String code, HttpServletResponse response) throws Exception {
         System.out.println(">>> kakaoServiceImpl socialLogin");
 
-        if(response.getStatus()==HttpServletResponse.SC_OK){
-        // 1. 인가 코드를 가지고 액세스 토큰을 요청함
-        String accessToken = getAccessToken(code);
+        if(response.getStatus()==HttpServletResponse.SC_OK) {
+            // 1. 인가 코드를 가지고 액세스 토큰을 요청함
+            String accessToken = getAccessToken(code);
 
-        // 2. 액세스 토큰을 가지고 카카오 API를 호출함
-        getKakaoUserInfo(accessToken);
-        memberInfoReq.setAuthType("kakao");
+            // 2. 액세스 토큰을 가지고 카카오 API를 호출함
+            getKakaoUserInfo(accessToken);
+            memberInfoReq.setAuthType("kakao");
 
-        // 3. 카카오 ID로 회원가입을 처리한다
-        // 이 떄 비밀번호는 랜덤한 값으로 지정
-        memberInfoReq.setPassword(UUID.randomUUID().toString());
-        System.out.println(memberInfoReq);
-        int flag = memberMapper.insertMember(memberInfoReq);
-
-        // 4. 강제로 로그인 처리를 한다.
-        if (flag == 1){
-            return memberMapper.getLoginMember(memberInfoReq);
+            // 3. 카카오 ID로 회원가입을 처리한다
+            // TODO: user가 없는지 확인해서 예외처리 해야함
+            // 이 떄 비밀번호는 랜덤한 값으로 지정
+            memberInfoReq.setPassword(UUID.randomUUID().toString());
+            System.out.println(memberInfoReq);
+            int flag = memberMapper.insertMember(memberInfoReq);
         }
 
-        }
-
-        memberMsgRes.setResMsg("fail");
-        return memberMsgRes;
+            // 4. 강제로 로그인 처리를 한다.
+                return memberMapper.findById(memberInfoReq.getId());
 
     }
 

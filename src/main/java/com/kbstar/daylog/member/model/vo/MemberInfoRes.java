@@ -10,13 +10,14 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @NoArgsConstructor
 @Getter
+@Setter
 @ToString
 @Component
 public class MemberInfoRes {
     private int memberIdx;
     private String id;
-    private String password;
     private String nickname;
+    private String password;
     private String authType;
     private String token;
     private String memberCreatedDate;

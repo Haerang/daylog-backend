@@ -1,5 +1,6 @@
 package com.kbstar.daylog.member.model.mapper;
 
+import com.kbstar.daylog.member.model.vo.User;
 import com.kbstar.daylog.member.model.vo.MemberInfoReq;
 import com.kbstar.daylog.member.model.vo.MemberInfoRes;
 import org.apache.ibatis.annotations.Mapper;
@@ -15,7 +16,10 @@ public interface MemberMapper {
     public MemberInfoRes getLoginMember(MemberInfoReq member) throws Exception;
 
     // 회원조회(id)
-    public MemberInfoRes getMemberById(MemberInfoReq member) throws Exception;
+    public MemberInfoRes getMemberById(String id) throws Exception;
+
+    // 회원조회(jwt용)
+    public User findById(String id);
 
     // 회원조회(idx)
     public MemberInfoRes getMemberByIdx(int idx) throws Exception;
