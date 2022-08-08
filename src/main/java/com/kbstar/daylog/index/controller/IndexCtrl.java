@@ -3,17 +3,20 @@ package com.kbstar.daylog.index.controller;
 import com.kbstar.daylog.index.model.vo.IndexPlaceRes;
 import com.kbstar.daylog.index.model.vo.IndexPostRes;
 import com.kbstar.daylog.index.service.IndexServiceImpl;
+import com.kbstar.daylog.member.model.vo.MemberInfoReq;
+import com.kbstar.daylog.place.model.vo.HistoryReq;
+import com.kbstar.daylog.place.service.PlaceServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
 public class IndexCtrl {
 
     private final IndexServiceImpl indexService;
+    private final PlaceServiceImpl placeService;
 
     @GetMapping("/")
     public String index(Model model) throws Exception{

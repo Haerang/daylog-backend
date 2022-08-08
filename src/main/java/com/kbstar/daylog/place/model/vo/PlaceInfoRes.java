@@ -2,11 +2,13 @@ package com.kbstar.daylog.place.model.vo;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 @NoArgsConstructor
 @Getter
+@Setter
 @ToString
 @Component
 public class PlaceInfoRes {
@@ -19,4 +21,5 @@ public class PlaceInfoRes {
     private String log;
     private String lat;
     private String placeThumbnailPath;
+    private int saveFlag;
 }

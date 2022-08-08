@@ -1,5 +1,7 @@
 package com.kbstar.daylog.place.model.mapper;
 
+import com.kbstar.daylog.member.model.vo.MemberInfoReq;
+import com.kbstar.daylog.place.model.vo.HistoryReq;
 import com.kbstar.daylog.place.model.vo.PlaceInfoReq;
 import com.kbstar.daylog.place.model.vo.PlaceInfoRes;
 import org.apache.ibatis.annotations.Mapper;
@@ -28,4 +30,17 @@ public interface PlaceMapper {
 
     // 장소 삭제
     public int deletePlace(int placeIdx) throws Exception;
+
+    // 장소 저장
+    public int savePlace(HistoryReq history) throws Exception;
+
+    // 장소 저장 취소
+    public int deleteSavedPlace(HistoryReq history) throws Exception;
+
+    // 저장된 장소 전체 가져오기
+    public List<PlaceInfoRes> getSavedPlaces(MemberInfoReq member) throws Exception;
+
+    // 장소가 저장되었는지 확인하기
+    public int checkSavePlace(HistoryReq history) throws Exception;
+
 }

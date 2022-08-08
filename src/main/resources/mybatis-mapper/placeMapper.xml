@@ -46,7 +46,30 @@
     </update>
 
     <delete id="deletePlace" parameterType="int">
-        DELETE FROM place WHERE placeIdx = #{placeIdx}
+        DELETE FROM place WHERE place_idx = #{placeIdx}
     </delete>
+
+    <insert id="savePlace" parameterType="HistoryReq">
+        INSERT INTO history(member_idx, place_idx, history_created_date)
+        VALUES ((SELECT member_idx
+                FROM member
+                WHERE id=#{id}), #{placeIdx}, now())
+    </insert>
+
+    <delete id="deleteSavedPlace" parameterType="HistoryReq">
+        DELETE FROM history WHERE place_idx = #{placeIdx} and member_idx = (SELECT member_idx FROM member WHERE id=#{id})
+    </delete>
+
+    <select id="getSavedPlaces" resultType="MemberInfoReq" parameterType="HistoryReq">
+        SELECT distinct place_idx
+        FROM history
+        WHERE member_idx = (SELECT member_idx FROM member WHERE id=#{id})
+    </select>
+
+    <select id="checkSavePlace" resultType="int" parameterType="HistoryReq">
+        SELECT count(*) as save_place
+        FROM history
+        WHERE place_idx = #{placeIdx} AND member_idx = (SELECT member_idx FROM member WHERE id=#{id})
+    </select>
 
 </mapper>

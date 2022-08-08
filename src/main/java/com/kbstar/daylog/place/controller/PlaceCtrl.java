@@ -1,5 +1,6 @@
 package com.kbstar.daylog.place.controller;
 
+import com.kbstar.daylog.place.model.vo.HistoryReq;
 import com.kbstar.daylog.place.model.vo.PlaceInfoReq;
 import com.kbstar.daylog.place.model.vo.PlaceInfoRes;
 import com.kbstar.daylog.place.model.vo.PlaceMsgRes;
@@ -24,7 +25,7 @@ public class PlaceCtrl {
     @GetMapping(value="/place")
     @ResponseBody
     public Object selectPlace(@RequestParam(value="idx") int placeIdx, ModelAndView modelAndView) throws Exception{
-        System.out.println(">>>> placCtrl selectPlace");
+        System.out.println(">>>> placeCtrl selectPlace");
 
         PlaceInfoRes selectedPlace = (PlaceInfoRes) placeService.getPlacebyId(placeIdx);
 
@@ -32,6 +33,22 @@ public class PlaceCtrl {
         modelAndView.addObject("selectedPlace", selectedPlace);
 
         return modelAndView;
+    }
+
+    @PostMapping("place/check")
+    @ResponseBody
+    public int checkSavePlace(@RequestBody HistoryReq historyReq) throws Exception{
+        System.out.println(">>>> placeCtrl checkSavePlace");
+
+        int flag = placeService.checkSavePlace(historyReq);
+
+        // 만약 넘어온 flag가 0이면 save, 1이면 delete
+        if(flag > 0)
+            flag = 1;
+
+        System.out.println(">>>> placeCtrl check : " + flag);
+
+        return flag;
     }
 
     @PostMapping("mobile/place/region")
@@ -46,6 +63,27 @@ public class PlaceCtrl {
         }
 
         return placeList;
+    }
+
+    @PostMapping("place/save")
+    @ResponseBody
+    public int savePlace(@RequestBody HistoryReq historyReq) throws Exception{
+        System.out.println(">>> placeCtrl savePlace");
+
+        int result = -1;
+
+        // 만약 넘어온 flag가 0이면 save, 1이면 delete
+        if(historyReq.getFlag()==0) {
+            result = placeService.savePlace(historyReq);
+        }else if(historyReq.getFlag()==1) {
+            result = placeService.deleteSavedPlace(historyReq);
+            if(result != -1){
+                result = 1;
+            }
+        }
+
+        System.out.println(">>>>>> placeCtrl result : " + result);
+        return result;
     }
 
 }

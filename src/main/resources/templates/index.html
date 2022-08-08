@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
     <link rel="stylesheet" href="assets/css/plugins/easyzoom.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
@@ -47,7 +48,7 @@
         <div class="container">
             <!-- 인사말 영역 -->
             <div class="pt-20">
-                <h3>해랑님, 이번 주말</h3>
+                <h3><span id="nickname"></span>님, 이번 주말</h3>
                 <p></p>
                 <h3>이런곳은 어때요?</h3>
             </div>
@@ -79,7 +80,6 @@
                     <div class="blog-content-4">
                         <div>
                         <h4><span th:text="${firstPlaceList.placeName}"/>
-                            <span style="position:absolute; right: 20px; vertical-align: middle;" class="material-icons save">bookmark</span>
                         </h4>
                         </div>
                         <div class="blog-meta-4">
@@ -154,7 +154,16 @@
 <script src="assets/js/plugins/ajax-mail.js"></script>
 <!-- Main JS -->
 <script src="assets/js/main.js"></script>
-
+<script>
+    /*<![CDATA[*/
+        $(document).ready(function(){
+             var member = window.android.getMember()
+             console.log(member)
+             var dataParam = JSON.parse(member)
+             $("#nickname").html(dataParam.nickname)
+        })
+    /*]]>*/
+</script>
 </body>
 
 </html>
