@@ -60,10 +60,10 @@
         DELETE FROM history WHERE place_idx = #{placeIdx} and member_idx = (SELECT member_idx FROM member WHERE id=#{id})
     </delete>
 
-    <select id="getSavedPlaces" resultType="MemberInfoReq" parameterType="HistoryReq">
-        SELECT distinct place_idx
-        FROM history
-        WHERE member_idx = (SELECT member_idx FROM member WHERE id=#{id})
+    <select id="getSavedPlaces" resultType="PlaceInfoRes" parameterType="MemberInfoReq">
+        SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path, place_created_date, place_modified_date
+        FROM place
+        WHERE place_idx in (SELECT place_idx FROM history WHERE member_idx= (SELECT member_idx FROM member WHERE id = #{id}))
     </select>
 
     <select id="checkSavePlace" resultType="int" parameterType="HistoryReq">

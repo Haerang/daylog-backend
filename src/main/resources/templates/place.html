@@ -58,7 +58,7 @@
                         <h4>
                             <span th:text="${selectedPlace.placeName}"/> | <span th:text="${selectedPlace.category}"/>
                             <span th:if="${selectedPlace.saveFlag} == '0'">
-                                <span th:id="bookmark-icon" style="position:absolute; right: 20px; vertical-align: middle;" class="material-icons save">bookmark_border</span>
+                                <span th:id="bookmark-icon" style="position:absolute; right: 20px; vertical-align: middle;" class="material-icons save">favorite_border</span>
                             </span>
                         </h4>
                     <div>
@@ -172,9 +172,9 @@
                                             success : function(data) {
                                                 console.log(data)
                                                 if(data == "0")
-                                                    $("#bookmark-icon").html("bookmark_border")
+                                                    $("#bookmark-icon").html("favorite_border")
                                                 else if(data == "1")
-                                                    $("#bookmark-icon").html("bookmark")
+                                                    $("#bookmark-icon").html("favorite")
 
                                                     console.log($("#bookmark-icon").html())
                                             }
@@ -183,12 +183,12 @@
 
                                     //save 버튼 눌렀을 때 ajax 처리
                                     $("#bookmark-icon").click(function() {
-                                          if($("#bookmark-icon").html() == "bookmark_border"){
+                                          if($("#bookmark-icon").html() == "favorite_border"){
                                             console.log("html:     " + $("#bookmark-icon").html())
                                             dataParam.flag = 0
                                           }
 
-                                          if($("#bookmark-icon").html() == "bookmark"){
+                                          if($("#bookmark-icon").html() == "favorite"){
                                             dataParam.flag = 1
                                           }
 
@@ -202,10 +202,10 @@
                                                 data : JSON.stringify(dataParam),
                                                 success : function(data) {
                                                     console.log(data)
-                                                    if(data == "1" && $("#bookmark-icon").html() == "bookmark_border")
-                                                        $("#bookmark-icon").html("bookmark")
-                                                    else if(data == "1" && $("#bookmark-icon").html() == "bookmark")
-                                                        $("#bookmark-icon").html("bookmark_border")
+                                                    if(data == "1" && $("#bookmark-icon").html() == "favorite_border")
+                                                        $("#bookmark-icon").html("favorite")
+                                                    else if(data == "1" && $("#bookmark-icon").html() == "favorite")
+                                                        $("#bookmark-icon").html("favorite_border")
 
                                                         console.log($("#bookmark-icon").html())
                                                 }

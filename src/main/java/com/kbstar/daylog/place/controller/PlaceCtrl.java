@@ -1,9 +1,7 @@
 package com.kbstar.daylog.place.controller;
 
-import com.kbstar.daylog.place.model.vo.HistoryReq;
-import com.kbstar.daylog.place.model.vo.PlaceInfoReq;
-import com.kbstar.daylog.place.model.vo.PlaceInfoRes;
-import com.kbstar.daylog.place.model.vo.PlaceMsgRes;
+import com.kbstar.daylog.member.model.vo.MemberInfoReq;
+import com.kbstar.daylog.place.model.vo.*;
 import com.kbstar.daylog.place.service.PlaceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -84,6 +82,15 @@ public class PlaceCtrl {
 
         System.out.println(">>>>>> placeCtrl result : " + result);
         return result;
+    }
+
+    @PostMapping("mobile/place/favorite")
+    @ResponseBody
+    public Object getSavedPlaces(@RequestBody MemberInfoReq member) throws Exception{
+        System.out.println(">>> placeCtrl savePlace");
+        Object favoriteList = placeService.getSavedPlaces(member);
+        System.out.println(">>>> placeCtrl savePlace favoriteList" + favoriteList);
+        return favoriteList;
     }
 
 }

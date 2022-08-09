@@ -1,6 +1,7 @@
 package com.kbstar.daylog.place.model.mapper;
 
 import com.kbstar.daylog.member.model.vo.MemberInfoReq;
+import com.kbstar.daylog.place.model.vo.FavoriteReq;
 import com.kbstar.daylog.place.model.vo.HistoryReq;
 import com.kbstar.daylog.place.model.vo.PlaceInfoReq;
 import com.kbstar.daylog.place.model.vo.PlaceInfoRes;
