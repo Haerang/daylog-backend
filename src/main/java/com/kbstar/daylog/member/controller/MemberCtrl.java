@@ -74,23 +74,25 @@ public class MemberCtrl {
         User user = memberService.findById(memberInfoReq.getId());
         System.out.println(">>>> user: " + user);
 
-        if(Objects.isNull(user)){
+        memberinfoRes = (MemberInfoRes) memberService.getLoginMember(memberInfoReq);
+
+        if(Objects.isNull(memberinfoRes)){
             // 로그인 실패 시 에러 메시지 넘겨주기
             memberMsgRes.setResMsg(FAIL);
             return memberMsgRes;
+        }else{
+            // 토큰 발급
+            String token = jwtTokenProvider.createToken(user.getUsername(), user.getNickname());
+            memberinfoRes.setToken(token);
+            memberinfoRes.setNickname(user.getNickname());
+
+            // 발급한 토큰값을 DB에 업데이트
+            System.out.println("updateToken >>>>>>>>>>> "+ memberInfoReq);
+            memberService.updateToken(memberInfoReq);
+
+            // 로그인 성공 시 jwt 토큰 넘겨주기
+            return memberinfoRes;
         }
-
-        // 토큰 발급
-        String token = jwtTokenProvider.createToken(user.getUsername(), user.getNickname());
-        memberInfoReq.setToken(token);
-        memberInfoReq.setNickname(user.getNickname());
-
-        // 발급한 토큰값을 DB에 업데이트
-        System.out.println("updateToken >>>>>>>>>>> "+ memberInfoReq);
-        memberService.updateToken(memberInfoReq);
-
-        // 로그인 성공 시 jwt 토큰 넘겨주기
-        return memberInfoReq;
     }
 
     @PutMapping("modify")

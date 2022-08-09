@@ -154,7 +154,6 @@ p:last-child {
 
 a,
 button {
-  color: inherit;
   line-height: inherit;
   text-decoration: none;
   cursor: pointer;
@@ -262,7 +261,7 @@ ul {
 }
 
 a:hover {
-  color: #ff6e21;
+
 }
 
 /*************************

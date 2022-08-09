@@ -4,18 +4,18 @@
 
 <mapper namespace="com.kbstar.daylog.place.model.mapper.PlaceMapper">
     <select id="getAllPlaces" resultType="PlaceInfoRes">
-        SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path, place_created_date, place_modified_date
+        SELECT place_idx, place_name, category, loc1, loc2, address, tel, log, lat, place_thumbnail_path, place_created_date, place_modified_date
         FROM place
     </select>
 
     <select id="getPlaceByCategory" resultType="PlaceInfoRes" parameterType="PlaceInfoReq">
-        SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path, place_created_date, place_modified_date
+        SELECT place_idx, place_name, category, loc1, loc2, address, tel, log, lat, place_thumbnail_path, place_created_date, place_modified_date
         FROM place
         WHERE category LIKE CONCAT('%', #{category}, '%')
     </select>
 
     <select id="getPlaceIf" resultType="PlaceInfoRes" parameterType="PlaceInfoReq">
-        SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path
+        SELECT place_idx, place_name, category, loc1, loc2, address, tel, log, lat, place_thumbnail_path
         FROM place
         <if test = "loc1 != '전체'">
         WHERE loc1 LIKE CONCAT('%', #{loc1}, '%')
@@ -23,13 +23,13 @@
     </select>
 
     <select id="getPlaceById" resultType="PlaceInfoRes" parameterType="int">
-        SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path, place_created_date, place_modified_date
+        SELECT place_idx, place_name, category, loc1, loc2, address, tel, log, lat, place_thumbnail_path, place_created_date, place_modified_date
         FROM place
         WHERE place_idx = #{placeIdx}
     </select>
 
     <insert id="insertPlace" parameterType="PlaceInfoReq">
-        INSERT INTO place(place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path, place_created_date)
+        INSERT INTO place(place_name, category, loc1, loc2, address, tel, log, lat, place_thumbnail_path, place_created_date)
         VALUES (#{placeName}, #{category}, #{loc1}, #{loc2}, #{address}, #{log}, #{lat}, #{placeThumbnailPath}, now())
     </insert>
 
@@ -40,6 +40,7 @@
         loc1 = #{loc1},
         loc2 = #{loc2},
         address = #{address},
+        tel = #{tel},
         placeThumbnailPath = #{placeThumbnailPath},
         member_modified_date = now()
         WHERE place_idx = #{idx}
@@ -61,7 +62,7 @@
     </delete>
 
     <select id="getSavedPlaces" resultType="PlaceInfoRes" parameterType="MemberInfoReq">
-        SELECT place_idx, place_name, category, loc1, loc2, address, log, lat, place_thumbnail_path, place_created_date, place_modified_date
+        SELECT place_idx, place_name, category, loc1, loc2, address, tel, log, lat, place_thumbnail_path, place_created_date, place_modified_date
         FROM place
         WHERE place_idx in (SELECT place_idx FROM history WHERE member_idx= (SELECT member_idx FROM member WHERE id = #{id}))
     </select>

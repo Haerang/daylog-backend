@@ -18,6 +18,7 @@ public class PlaceInfoRes {
     private String loc1;
     private String loc2;
     private String address;
+    private String tel;
     private String log;
     private String lat;
     private String placeThumbnailPath;

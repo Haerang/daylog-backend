@@ -73,14 +73,11 @@
                 <div class="tab-content description-review-bottom">
                     <div id="des-details1" class="tab-pane active">
                         <div class="product-description-wrapper">
+                            <!-- 전화번호 텍스트 영역 -->
+                            <div class = "mb-10"><span class="material-icons" style="vertical-align: middle;">call</span><a th:href="@{tel:}+${selectedPlace.tel}"><span style="font-size:16px;" th:text=" ${selectedPlace.tel}"/></a></div>
+
                             <!-- 주소 텍스트 영역 -->
-                            <div class = "mb-20"><span class="material-icons" style="vertical-align: middle;">place</span><span style="font-size:16px;" th:text="${selectedPlace.address}"/>
-<!--                                <a id="navi" href="kakaomap://route?sp=37.537229,127.005515&ep=37.4979502,127.0276368&by=CAR">-->
-<!--                                <img-->
-<!--                                    src="https://developers.kakao.com/assets/img/about/buttons/navi/kakaonavi_btn_small.png"-->
-<!--                                    alt="길 안내하기 버튼"/>-->
-<!--                                </a>-->
-                            </div>
+                            <div class = "mb-20"><span class="material-icons" style="vertical-align: middle;">place</span><span style="font-size:16px;" th:text=" ${selectedPlace.address}"/></div>
 
                                 <!-- 카카오 맵 영역 -->
                                 <div id="map" style="width:100%; height:350px; text-align:center"></div>
@@ -109,6 +106,11 @@
 
                                 /*]]>*/
                                 </script>
+                            <div class="mt-20" style="text-align:center;">
+                                <a id="navi" th:href="@{kakaomap://route?sp=37.50327252991918,127.04986338864042&ep=}+${selectedPlace.lat}+','+${selectedPlace.log}+'&by=CAR'">
+                                    <img style="max-width:100%" src="assets/images/kakaomap2.png" alt="길 안내하기 버튼"/>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div id="des-details2" class="tab-pane">
