@@ -157,10 +157,10 @@
 <script>
     /*<![CDATA[*/
         $(document).ready(function(){
-             var member = window.android.getMember()
+             var member = window.android.getNickname()
              console.log(member)
-             var dataParam = JSON.parse(member)
-             $("#nickname").html(dataParam.nickname)
+             //var dataParam = JSON.parse(member)
+             $("#nickname").html(member)
         })
     /*]]>*/
 </script>

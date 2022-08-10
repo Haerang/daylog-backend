@@ -88,7 +88,8 @@
                                     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
                                         mapOption = {
                                             center: new kakao.maps.LatLng([[${selectedPlace.lat}]], [[${selectedPlace.log}]]), // 지도의 중심좌표
-                                            level: 3 // 지도의 확대 레벨
+                                            level: 3, // 지도의 확대 레벨
+                                            draggable: false
                                         };
 
                                     var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -216,7 +217,7 @@
 
                                      $("#posting-tab").click(function() {
                                           $.ajax({
-                                                url  : "/place/posting",
+                                                url  : "place/posting",
                                                 type : "post",
                                                 contentType: "application/json",
                                                 dataType : "json",

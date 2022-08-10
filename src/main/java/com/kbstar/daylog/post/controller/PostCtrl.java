@@ -33,7 +33,7 @@ public class PostCtrl {
         return modelAndView;
     }
 
-    @PostMapping("/place/posting")
+    @PostMapping("place/posting")
     @ResponseBody
     public Object selectPostByPlaceIdx(@RequestBody PlaceInfoReq placeInfoReq) throws Exception{
         System.out.println(">>>>> placeCtrl selectPostByPlaceIdx");

@@ -11,7 +11,10 @@
     <select id="getLoginMember" resultType="MemberInfoRes" parameterType="MemberInfoReq">
         SELECT member_idx, id, password, nickname, auth_type, token, member_created_date, member_modified_date
         FROM member
-        WHERE id=#{id} AND password=#{password}
+        WHERE id=#{id}
+        <if test = "authType != 'kakao'">
+            AND password=#{password}
+        </if>
     </select>
 
     <select id="getMemberById" resultType="MemberInfoRes" parameterType="String">
